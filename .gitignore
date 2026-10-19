@@ -1,0 +1,13 @@
+Debug/
+Release/
+*.o
+*.d
+*.elf
+*.map
+*.list
+*.bin
+*.hex
+*.su
+*.cyclo
+.settings/language.settings.xml
+.env
