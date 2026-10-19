@@ -1,28 +1,33 @@
 # LoRa Applications
 
-STM32 mikrodenetleyiciler ve EBYTE E32 LoRa modülleriyle geliştirdiğim kablosuz haberleşme uygulamaları.
+STM32, ESP32 ve EBYTE E32 LoRa modülleriyle geliştirdiğim kablosuz haberleşme uygulamaları.
 
-Her uygulama kendi klasöründe, bağımsız bir STM32CubeIDE projesi olarak duruyor. Ayrıntılar için ilgili klasöre girip oradaki README dosyasına bakabilirsiniz.
+Her uygulama kendi klasöründe duruyor. Ayrıntılar (malzemeler, bağlantı şemaları, kurulum ve sorun giderme) için ilgili klasöre girip oradaki README dosyasına bakabilirsiniz.
 
 ## Uygulamalar
 
-| Uygulama | Açıklama |
-|---|---|
-| [LoRa-and-PC](LoRa-and-PC/) | Bilgisayardan LoRa üzerinden gönderilen komutlarla STM32'ye bağlı bir DC motoru ileri/geri sürme ve durdurma |
+| # | Uygulama | Açıklama |
+|---|---|---|
+| 1 | [PC-and-stm32-comm-by-LoRa](PC-and-stm32-comm-by-LoRa/) | Bilgisayardan (USB-TTL + Docklight) LoRa üzerinden gönderilen `F` / `B` / `S` komutlarıyla STM32F407'ye bağlı bir DC motoru ileri, geri sürme ve durdurma |
+| 2 | [esp32-and-stm32-comm-by-LoRa](esp32-and-stm32-comm-by-LoRa/) | 1. projenin devamı: komutları gönderen taraf USB-TTL yerine **ESP32**. STM32 tarafı, kodu ve bağlantıları aynı kalıyor |
 
 ## Ortak Donanım ve Araçlar
 
-- **Kart:** STM32F407G-DISC1 (STM32F407VGT6)
-- **LoRa modülü:** EBYTE E32 serisi (UART arayüzlü)
-- **Geliştirme ortamı:** STM32CubeIDE, HAL kütüphanesi
+| | |
+|---|---|
+| **LoRa modülü** | EBYTE E32-433T20D (433 MHz, UART arayüzlü), TX433-JKD anten |
+| **Alıcı taraf** | STM32F407 geliştirme kartı + L298N motor sürücü + DC motor |
+| **Gönderici taraf** | Bilgisayar + USB-TTL (1. proje) veya ESP32 DevKit (2. proje) |
+| **Yazılım** | STM32CubeIDE (HAL), PlatformIO (ESP32), Docklight / Serial Monitor |
 
 ## Bir Projeyi Açmak
 
-1. Repoyu indir:
-   ```
-   git clone git@github.com:KRMALC/LoRa-applications.git
-   ```
-2. STM32CubeIDE'de **File → Import → General → Existing Projects into Workspace** seç.
-3. İstediğin uygulamanın klasörünü göster (ör. `LoRa-and-PC`), derle ve karta yükle.
+Repoyu indir:
+```
+git clone git@github.com:KRMALC/LoRa-applications.git
+```
 
-`Debug/` klasörü ve derleme çıktıları repoda tutulmuyor; ilk derlemede otomatik oluşur.
+- **STM32 projeleri:** STM32CubeIDE'de **File → Import → General → Existing Projects into Workspace** seç, ilgili proje klasörünü göster, derle ve karta yükle.
+- **ESP32 projesi:** VS Code + PlatformIO ile ESP32 klasörünü aç, derle ve karta yükle.
+
+Derleme çıktıları (`Debug/` vb.) repoda tutulmuyor; ilk derlemede otomatik oluşur.
